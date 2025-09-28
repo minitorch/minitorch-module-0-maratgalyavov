@@ -31,29 +31,38 @@ from typing import Callable, Iterable, List
 # For is_close:
 # $f(x) = |x - y| < 1e-2$
 
+
 def mul(x: float, y: float) -> float:
     return x * y
+
 
 def id(x: float) -> float:
     return x
 
+
 def add(x: float, y: float) -> float:
     return x + y
+
 
 def neg(x: float) -> float:
     return -x
 
+
 def lt(x: float, y: float) -> float:
     return 1.0 if x < y else 0.0
+
 
 def eq(x: float, y: float) -> float:
     return 1.0 if x == y else 0.0
 
+
 def max(x: float, y: float) -> float:
     return x if x > y else y
 
+
 def is_close(x: float, y: float) -> float:
     return 1.0 if abs(x - y) < 1e-2 else 0.0
+
 
 def sigmoid(x: float) -> float:
     if x >= 0:
@@ -61,23 +70,30 @@ def sigmoid(x: float) -> float:
     else:
         return math.exp(x) / (1.0 + math.exp(x))
 
+
 def relu(x: float) -> float:
     return max(0.0, x)
+
 
 def log(x: float) -> float:
     return math.log(x)
 
+
 def exp(x: float) -> float:
     return math.exp(x)
+
 
 def log_back(x: float, d: float) -> float:
     return d / x
 
+
 def inv(x: float) -> float:
     return 1.0 / x
 
+
 def inv_back(x: float, d: float) -> float:
     return -d / (x * x)
+
 
 def relu_back(x: float, d: float) -> float:
     return d if x > 0 else 0.0
@@ -102,8 +118,10 @@ def relu_back(x: float, d: float) -> float:
 def map(fn: Callable[[float], float], xs: Iterable[float]) -> List[float]:
     return [fn(x) for x in xs]
 
+
 def zipWith(fn: Callable[[float, float], float], xs: Iterable[float], ys: Iterable[float]) -> List[float]:
     return [fn(x, y) for x, y in zip(xs, ys)]
+
 
 def reduce(fn: Callable[[float, float], float], xs: Iterable[float], init: float) -> float:
     result = init
@@ -111,14 +129,18 @@ def reduce(fn: Callable[[float, float], float], xs: Iterable[float], init: float
         result = fn(result, x)
     return result
 
+
 def negList(xs: Iterable[float]) -> List[float]:
     return [neg(x) for x in xs]
+
 
 def addLists(xs: Iterable[float], ys: Iterable[float]) -> List[float]:
     return [add(x, y) for x, y in zip(xs, ys)]
 
+
 def sum(xs: Iterable[float]) -> float:
     return reduce(add, xs, 0.0)
+
 
 def prod(xs: Iterable[float]) -> float:
     return reduce(mul, xs, 1.0)

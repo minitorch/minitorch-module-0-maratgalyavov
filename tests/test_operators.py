@@ -109,11 +109,11 @@ def test_sigmoid(a: float) -> None:
     * It is  strictly increasing.
     """
     sig_a = sigmoid(a)
-    
+
     assert 0.0 <= sig_a <= 1.0
-    
+
     assert_close(1.0 - sig_a, sigmoid(-a))
-    
+
     assert_close(sigmoid(0.0), 0.5)
 
 
@@ -152,7 +152,7 @@ def test_other(x: float, y: float) -> None:
     left_side = add(add(x, y), y)
     right_side = add(x, add(y, y))
     assert_close(left_side, right_side)
-    
+
     assert_close(neg(neg(x)), x)
 
 
