@@ -8,6 +8,7 @@ from minitorch import MathTest
 import minitorch
 from minitorch.operators import (
     add,
+    addLists,
     eq,
     id,
     inv,
@@ -17,9 +18,12 @@ from minitorch.operators import (
     max,
     mul,
     neg,
+    negList,
+    prod,
     relu,
     relu_back,
     sigmoid,
+    sum,
 )
 
 from .strategies import assert_close, small_floats
@@ -176,8 +180,9 @@ def test_sum_distribute(ls1: List[float], ls2: List[float]) -> None:
     """Write a test that ensures that the sum of `ls1` plus the sum of `ls2`
     is the same as the sum of each element of `ls1` plus each element of `ls2`.
     """
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+    left_side = sum(ls1) + sum(ls2)
+    right_side = sum([x + y for x, y in zip(ls1, ls2)])
+    assert_close(left_side, right_side)
 
 
 @pytest.mark.task0_3
